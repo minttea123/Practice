@@ -1,0 +1,88 @@
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Customer
+{
+public:
+	Customer();
+	Customer(string name, string address, string city, string state, string zipcode);
+	void increase_limit(double amount);
+	string get_name()  const;
+	string get_address() const;
+	string get_city()  const;
+	string get_state() const;
+	double credit_limit;
+	double item_price;
+	double getCreditLimit(double credit_limit, double item_price);
+	double calculateBalance(double item_price, double balance);
+	int numPurchases = 0; 
+	void getCustomerInfo();
+
+private:
+	string name;
+	string address;
+	string city;
+	string state;
+	string zipcode;
+	double balance = 0;
+
+};
+
+double Customer::getCreditLimit(double credit_limit, double item_price) {
+
+	if (credit_limit < item_price) cout << "Denied"<< endl;
+	if (credit_limit >= item_price) cout << "Approved"<< endl;
+	return 0;
+}
+Customer::Customer() {
+	name = "bob";
+	address = "12393 Overcrest Dr";
+	city = "Yucaipa";
+	state = "CA";
+	zipcode = "92399";
+}
+Customer::Customer(string name, string address, string city, string state, string zipcode) {
+
+	this->name = name;
+	this->address = address;
+	this->city = city;
+	this->state = state;
+	this->zipcode = zipcode;
+}
+void Customer::getCustomerInfo() {
+	cout << name << endl << address << endl << city << endl << state << endl << zipcode << endl;
+	
+}
+double Customer::calculateBalance(double item_price, double balance) {
+	balance = balance + item_price; 
+	numPurchases++; 
+	cout <<" You've made "<< numPurchases<<"purchases" << endl; 
+	cout <<"Your balance is: " << balance << endl; 
+	return balance; 
+	}
+int main()
+{
+	double item;
+	char answer;
+	cout << "would you like to make a purchase?";
+	 
+	do {
+		cin >> answer;
+		cout << "Enter in the price of the item" << endl; 
+		cin >> item;
+		cout << endl;
+
+		Customer one("Megan", "12393 OceanView Dr", "Yucaipa", "CA", "92399");
+		one.getCreditLimit(300.00, item);
+		one.getCustomerInfo();
+		one.calculateBalance(item, 30.00);
+		cout << "Would you like to make another purchase?";
+		//cin >> answer;
+	} while (answer == 'y');
+	return 0;
+}
