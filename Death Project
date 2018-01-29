@@ -1,0 +1,72 @@
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Customer
+{
+public:
+	Customer();
+	Customer(string name, string address, string city, string state, string zipcode);
+	void increase_limit(double amount);
+	string get_name()  const;
+	string get_address() const;
+	string get_city()  const;
+	string get_state() const;
+	double credit_limit;
+	double item_price;
+	double getCreditLimit(double credit_limit, double item_price);
+	void getItemPrice(double item_price);
+	string getCustomerInfo(string name, string address, string city, string state, string zipcode);
+	
+private:
+	string name;
+	string address;
+	string city;
+	string state;
+	string zipcode;
+	double balance = 0;
+	/* and here
+	*/
+
+};
+
+double Customer::getCreditLimit(double credit_limit, double item_price) {
+
+	if (credit_limit < item_price) cout << "Denied";
+	if (credit_limit >= item_price) cout << "Approved";
+	return 0;
+}
+Customer::Customer() {
+	name = "bob";
+	address = "12393 Overcrest Dr";
+	city = "Yucaipa";
+	state = "CA";
+	zipcode = "92399";
+}
+Customer::Customer(string name, string address, string city, string state, string zipcode) {
+
+	this->name = name;
+	this->address = address;
+	this->city = city;
+	this->state = state;
+	this->zipcode = zipcode;
+}
+string Customer::getCustomerInfo(string name, string address, string city, string state, string zipcode) {
+	cout << name << endl << address << endl << city << endl << state << endl<<  zipcode << endl;
+	return 0;
+}
+int main()
+{
+
+	Customer();
+	
+	Customer one;
+		one.getCreditLimit(30.00, 300.00);
+		one.getCustomerInfo("bob", "12393 Oceancrest dr", "kill myself", "c", "d");
+    return 0;
+}
